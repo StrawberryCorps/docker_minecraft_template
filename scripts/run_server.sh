@@ -1,11 +1,11 @@
 #!/bin/sh
 set -e
 
-if [[ "$1" = 'serve' ]]; then
+if [ "$1" = 'serve' ]; then
 
-  exec java -jar $JAVA_ARGS \
+  java -jar $JAVA_ARGS \
     -Xmx$JAVA_HEAP_SIZE -Xms$JAVA_HEAP_SIZE \
-    $SERVER_PATH/paper.jar \
+    $SERVER_PATH/straw-serv.jar \
     $SPIGOT_ARGS \
     $PAPERSPIGOT_ARGS
 fi
