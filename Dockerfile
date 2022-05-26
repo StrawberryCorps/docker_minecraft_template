@@ -3,7 +3,7 @@ FROM openjdk:17-jdk-slim-buster AS build
 RUN apt update
 RUN apt install git curl -y
 
-WORKDIR /tmp
+WORKDIR /strawbuild
 ADD scripts/make_server.sh make_server.sh
 RUN chmod +x make_server.sh
 
@@ -27,7 +27,7 @@ HEALTHCHECK --interval=5s --timeout=5s --start-period=120s \
   CMD mcstatus localhost:$( cat $SERVER_PATH/server.properties | grep "server-port" | cut -d'=' -f2 ) ping
 
 WORKDIR ${SERVER_PATH}
-COPY --from=build /tmp/straw-serv.jar ${SERVER_PATH}/
+COPY --from=build /strawbuild/straw-serv.jar ${SERVER_PATH}/
 
 ADD scripts/run_server.sh run_server.sh
 RUN chmod +x run_server.sh
