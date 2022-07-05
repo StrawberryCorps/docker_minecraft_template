@@ -21,7 +21,8 @@ jobs:
 
       - name: Build
         run: |
-          echo ${{ steps.vcs.outputs.commit }}
+          echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          echo ${SHORT_SHA}
           docker build -t harbor.eclixal.fr/library/strawserv  .
 
       - name: Login to Registry Eclixal
