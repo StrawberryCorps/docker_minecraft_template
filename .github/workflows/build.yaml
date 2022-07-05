@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: harbor.eclixal.fr/library/strawserv:${{ steps.vcs.outputs.commit }}
+          tags: harbor.eclixal.fr/library/strawserv:${SHORT_SHA}
 
       - name: Build and push latest
         uses: docker/build-push-action@v3
