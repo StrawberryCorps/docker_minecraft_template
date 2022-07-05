@@ -20,12 +20,12 @@ jobs:
           - driver-opts: image=harbor.eclixal.fr/library/strawserv:master
 
       - name: Push To Registry Eclixal
-          uses: redhat-actions/push-to-registry@v2
-          with:
-            image: ${{ steps.buildx.outputs.name }}
-            registry: harbor.eclixal.fr
-            username: admin
-            password: ${{ secrets.REGISTRY_PASSWORD }}
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.buildx.outputs.name }}
+          registry: harbor.eclixal.fr
+          username: admin
+          password: ${{ secrets.REGISTRY_PASSWORD }}
 
 
       - name: Image digest
