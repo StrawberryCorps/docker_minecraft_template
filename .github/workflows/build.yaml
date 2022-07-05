@@ -16,6 +16,18 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
+        with:
+          - driver-opts: image=harbor.eclixal.fr/library/strawserv:master
+
+      - name: Push To Registry Eclixal
+          id:
+          uses: redhat-actions/push-to-registry@v2
+          with:
+            image: ${{ steps.buildx.outputs.name }}
+            registry: harbor.eclixal.fr
+            username: admin
+            password: ${{ secrets.REGISTRY_PASSWORD }}
+
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
