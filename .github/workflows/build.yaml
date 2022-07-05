@@ -18,7 +18,8 @@ jobs:
         id: buildx
         with:
           install: true
-      -  name: Build
+
+      - name: Build
         run: |
           docker build -t harbor.eclixal.fr/library/strawserv:latest .
 
