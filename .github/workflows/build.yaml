@@ -23,13 +23,18 @@ jobs:
         run: |
           docker build -t harbor.eclixal.fr/library/strawserv:latest .
 
-      - name: Push To Registry Eclixal
-        uses: redhat-actions/push-to-registry@v2
+      - name: Login to Registry Eclixal
+        uses: docker/login-action@v2
         with:
-          image: ${{ steps.buildx.outputs.name }}
           registry: harbor.eclixal.fr
           username: admin
           password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: harbor.eclixal.fr/library/strawserv:latest
 
 
       - name: Image digest
