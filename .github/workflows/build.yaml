@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: harbor.eclixal.fr/library/strawserv:${{ steps.commit.outputs.short }}
+          tags: harbor.eclixal.fr/library/strawserv:${GITHUB_SHA::6}
 
       - name: Build and push latest
         uses: docker/build-push-action@v3
