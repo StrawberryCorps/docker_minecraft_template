@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim-buster AS build
+FROM openjdk:20-jdk-slim AS build
 
 RUN apt update
 RUN apt install git curl -y
@@ -11,7 +11,7 @@ RUN ./make_server.sh
 
 # ----------
 
-FROM openjdk:17-jdk-slim-buster AS production
+FROM openjdk:20-jdk-slim AS production
 
 ENV MINECRAFT_PATH=/opt/minecraft
 ENV SERVER_PATH=${MINECRAFT_PATH}/server
