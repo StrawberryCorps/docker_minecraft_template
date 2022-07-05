@@ -21,8 +21,6 @@ jobs:
 
       - name: Build
         run: |
-          echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-          echo ${SHORT_SHA}
           docker build -t harbor.eclixal.fr/library/strawserv  .
 
       - name: Login to Registry Eclixal
@@ -31,12 +29,6 @@ jobs:
           registry: harbor.eclixal.fr
           username: admin
           password: ${{ secrets.REGISTRY_PASSWORD }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: harbor.eclixal.fr/library/strawserv:${SHORT_SHA}
 
       - name: Build and push latest
         uses: docker/build-push-action@v3
